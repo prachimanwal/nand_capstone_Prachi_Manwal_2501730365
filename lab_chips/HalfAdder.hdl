@@ -1,0 +1,10 @@
+// This file is part of www.nand2tetris.org
+// Author: Prachi Manwal (Roll No: 2501730365, K = 65)
+
+CHIP HalfAdder {
+    IN a, b;
+    OUT sum, carry;
+    PARTS:
+    Xor(a=a, b=b, out=sum);
+    And(a=a, b=b, out=carry);
+}

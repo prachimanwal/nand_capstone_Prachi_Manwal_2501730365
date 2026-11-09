@@ -1,0 +1,12 @@
+// This file is part of www.nand2tetris.org
+// Author: Prachi Manwal (Roll No: 2501730365, K = 65)
+
+CHIP Mux {
+    IN a, b, sel;
+    OUT out;
+    PARTS:
+    Not(in=sel, out=notSel);
+    And(a=a, b=notSel, out=w1);
+    And(a=b, b=sel, out=w2);
+    Or(a=w1, b=w2, out=out);
+}

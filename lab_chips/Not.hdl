@@ -1,0 +1,9 @@
+// This file is part of www.nand2tetris.org
+// Author: Prachi Manwal (Roll No: 2501730365, K = 65)
+
+CHIP Not {
+    IN in;
+    OUT out;
+    PARTS:
+    Nand(a=in, b=in, out=out);
+}

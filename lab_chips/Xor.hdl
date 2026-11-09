@@ -1,0 +1,13 @@
+// This file is part of www.nand2tetris.org
+// Author: Prachi Manwal (Roll No: 2501730365, K = 65)
+
+CHIP Xor {
+    IN a, b;
+    OUT out;
+    PARTS:
+    Not(in=a, out=notA);
+    Not(in=b, out=notB);
+    And(a=a, b=notB, out=w1);
+    And(a=notA, b=b, out=w2);
+    Or(a=w1, b=w2, out=out);
+}

@@ -1,0 +1,11 @@
+// This file is part of www.nand2tetris.org
+// Author: Prachi Manwal (Roll No: 2501730365, K = 65)
+
+CHIP FullAdder {
+    IN a, b, c;
+    OUT sum, carry;
+    PARTS:
+    HalfAdder(a=a, b=b, sum=abSum, carry=abCarry);
+    HalfAdder(a=abSum, b=c, sum=sum, carry=abcCarry);
+    Or(a=abCarry, b=abcCarry, out=carry);
+}

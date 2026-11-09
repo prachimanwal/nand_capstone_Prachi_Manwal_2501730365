@@ -1,0 +1,14 @@
+// This file is part of www.nand2tetris.org
+// Author: Prachi Manwal (Roll No: 2501730365, K = 65)
+
+CHIP PC {
+    IN in[16], load, inc, reset;
+    OUT out[16];
+
+    PARTS:
+    Inc16(in=regOut, out=incOut);
+    Mux16(a=regOut, b=incOut, sel=inc, out=w1);
+    Mux16(a=w1, b=in, sel=load, out=w2);
+    Mux16(a=w2, b=false, sel=reset, out=regIn);
+    Register(in=regIn, load=true, out=out, out=regOut);
+}

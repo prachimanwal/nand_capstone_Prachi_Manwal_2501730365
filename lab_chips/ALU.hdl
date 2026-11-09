@@ -1,0 +1,39 @@
+// This file is part of www.nand2tetris.org
+// Author: Prachi Manwal (Roll No: 2501730365, K = 65)
+
+CHIP ALU {
+    IN  
+        x[16], y[16],  // 16-bit inputs        
+        zx, // zero the x input?
+        nx, // negate the x input?
+        zy, // zero the y input?
+        ny, // negate the y input?
+        f,  // compute out = x + y (if 1) or x & y (if 0)
+        no; // negate the out output?
+
+    OUT 
+        out[16], // 16-bit output
+        zr, // 1 if (out == 0), 0 otherwise
+        ng; // 1 if (out < 0),  0 otherwise
+
+    PARTS:
+    Mux16(a=x, b=false, sel=zx, out=x1);
+    Not16(in=x1, out=notX1);
+    Mux16(a=x1, b=notX1, sel=nx, out=x2);
+
+    Mux16(a=y, b=false, sel=zy, out=y1);
+    Not16(in=y1, out=notY1);
+    Mux16(a=y1, b=notY1, sel=ny, out=y2);
+
+    Add16(a=x2, b=y2, out=addXY);
+    And16(a=x2, b=y2, out=andXY);
+    Mux16(a=andXY, b=addXY, sel=f, out=fOut);
+
+    Not16(in=fOut, out=notFOut);
+    Mux16(a=fOut, b=notFOut, sel=no, out=out, out[0..7]=outLow, out[8..15]=outHigh, out[15]=ng);
+
+    Or8Way(in=outLow, out=orLow);
+    Or8Way(in=outHigh, out=orHigh);
+    Or(a=orLow, b=orHigh, out=notZr);
+    Not(in=notZr, out=zr);
+}

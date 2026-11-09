@@ -1,0 +1,10 @@
+// This file is part of www.nand2tetris.org
+// Author: Prachi Manwal (Roll No: 2501730365, K = 65)
+
+CHIP Bit {
+    IN in, load;
+    OUT out;
+    PARTS:
+    Mux(a=dffOut, b=in, sel=load, out=muxOut);
+    DFF(in=muxOut, out=dffOut, out=out);
+}
